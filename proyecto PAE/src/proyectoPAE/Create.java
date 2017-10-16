@@ -1,9 +1,12 @@
 package proyectoPAE;
 
+import java.util.ResourceBundle;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class Create extends Application {
@@ -11,8 +14,12 @@ public class Create extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		try {
-			GridPane root = FXMLLoader.load(getClass().getResource("Create.fxml"));
-			Scene scene = new Scene(root);
+			String resourcesLocation = "resources.i18n.messages";
+			ResourceBundle rb = ResourceBundle.getBundle(resourcesLocation);
+			FXMLLoader fxmlLoader = new FXMLLoader();
+			fxmlLoader.setResources(rb);
+			Pane pane = (GridPane)fxmlLoader.load(this.getClass().getResource("Create.fxml").openStream());
+			Scene scene = new Scene(pane);
 			primaryStage.setScene(scene);
 			primaryStage.show();
 			primaryStage.setTitle("Study Buddy");

@@ -28,14 +28,7 @@ public class Controller implements Initializable{
 	@FXML public Button btnCreate;
 	
 	private void newWindow(ActionEvent event){
-		btnAdd.setOnAction(new EventHandler<ActionEvent>() {
-			
-			@Override
-			public void handle(ActionEvent event) {
-				// TODO Auto-generated method stub
-				principal.mostrarVentanaSecundaria();
-			}
-		});
+		
 		
 	}
 	public void setPrincipal(Principal primaryProgram){

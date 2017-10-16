@@ -70,7 +70,7 @@ import javafx.stage.Stage;
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Subjects.fxml"));
             GridPane subjects = (GridPane) loader.load();
             Stage ventana = new Stage();
-            ventana.setTitle("Venta Dos");
+            ventana.setTitle("Ventana Dos");
             ventana.initOwner(primaryStage);
             Scene scene = new Scene(subjects);
             ventana.setScene(scene);
