@@ -11,7 +11,7 @@ public class Create extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		try {
-			GridPane root = FXMLLoader.load(getClass().getResource("Create (1).fxml"));
+			GridPane root = FXMLLoader.load(getClass().getResource("Create.fxml"));
 			Scene scene = new Scene(root);
 			primaryStage.setScene(scene);
 			primaryStage.show();

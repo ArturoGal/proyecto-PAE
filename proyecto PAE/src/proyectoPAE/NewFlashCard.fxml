@@ -27,10 +27,10 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <TextArea prefHeight="136.0" prefWidth="314.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-      <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-      <Label text="Title:" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-      <Label text="Description: " GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+      <TextArea fx:id="titleTA" prefHeight="136.0" prefWidth="314.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <TextField fx:id="titleTf" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <Label id="titleLb" text="%main_titleLb" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+      <Label id="descriptionLb" text="%main_titleLb" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
       <Button mnemonicParsing="false" text="CREATE" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
    </children>
    <padding>
