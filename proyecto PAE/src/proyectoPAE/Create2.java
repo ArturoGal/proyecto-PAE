@@ -1,4 +1,4 @@
-package application;
+package proyectoPAE;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
