@@ -55,7 +55,7 @@ public class Settings2 extends Application {
 		Scene scene = new Scene (vBox);
 		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		//Se ajustan las prioridades del Stage y se agrega el Scence
-		primaryStage.setTitle("VBox Example"); 
+		primaryStage.setTitle("Study Buddy"); 
 		primaryStage.setScene(scene);
 		primaryStage.show();
 		}
@@ -64,5 +64,3 @@ public class Settings2 extends Application {
 		}
 
 	}
-
- 
