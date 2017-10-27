@@ -1,5 +1,8 @@
 package proyectoPAE;
 
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -10,15 +13,21 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class Settings2 extends Application {
+	private ResourceBundle rb;
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
+		System.getProperty("user.language");
+		String resourceLocation = "resources.i18n.messages";
+		Locale locale = new Locale("EN");
+		rb = ResourceBundle.getBundle(resourceLocation, locale);
+		
 		VBox vBox = new VBox(); 
-		Label lblsett = new Label("Settings");
-		Button btnEdit = new Button("Edit Subjects"); 
-		Button btnFiles = new Button("Edit Files"); 
-		Button btnAbout = new Button("About"); 
-		Button btnHelp = new Button("Help"); 
+		Label lblsett = new Label(rb.getString("main_settingsBtn"));
+		Button btnEdit = new Button(rb.getString("main_editSubjectsBtn")); 
+		Button btnFiles = new Button(rb.getString("main_editFilesBtn")); 
+		Button btnAbout = new Button(rb.getString("main_aboutBtn")); 
+		Button btnHelp = new Button(rb.getString("main_helpBtn")); 
 		
 		VBox.setMargin(lblsett, new Insets(10,180,10,180));
 		VBox.setMargin(btnEdit, new Insets(5,180,5,180));

@@ -1,5 +1,8 @@
 package proyectoPAE;
 
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,7 +18,13 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 public class Subjects2 extends Application {
+	private ResourceBundle rb;
 	public void start(Stage stage) throws Exception {
+		System.getProperty("user.language");
+		String resourceLocation = "resources.i18n.messages";
+		Locale locale = new Locale("EN");
+		rb = ResourceBundle.getBundle(resourceLocation, locale);
+		
 		GridPane grid = new GridPane();
 		grid.setPrefSize(475, 300);
 		grid.setHgap(15);
@@ -24,12 +33,12 @@ public class Subjects2 extends Application {
 		Scene scene = new Scene(grid);
 		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		
-		Label lb1 = new Label("SUBJECTS");
+		Label lb1 = new Label(rb.getString("main_subjectsLb"));
 		Label lb2 = new Label("Enter text");
 		ListView<String> lv = new ListView<String>();
 		TextField tf = new TextField();
-		Button bt1 = new Button("+ ADD");
-		Button bt2 = new Button("DELETE");
+		Button bt1 = new Button(rb.getString("main_addBtn"));
+		Button bt2 = new Button(rb.getString("main_deleteBtn"));
 		
 		lb1.setStyle("-fx-font-size: 24px");
 		

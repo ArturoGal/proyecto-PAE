@@ -1,5 +1,8 @@
 package proyectoPAE;
 
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 import javafx.application.Application;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
@@ -11,9 +14,14 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 public class Principal2 extends Application {
-
+	private ResourceBundle rb;
 	@Override
 	public void start(Stage stage) throws Exception {
+		System.getProperty("user.language");
+		String resourceLocation = "resources.i18n.messages";
+		Locale locale = new Locale("ES");
+		rb = ResourceBundle.getBundle(resourceLocation, locale);
+		
 		GridPane grid = new GridPane();
 		grid.setHgap(15);
 		grid.setPrefSize(600, 500);
@@ -22,12 +30,11 @@ public class Principal2 extends Application {
 		Scene scene = new Scene(grid);
 		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		
-		Button bt1 = new Button("+ CREATE");
-		Button bt2 = new Button("+ ADD");
-		Button bt3 = new Button("Settings");
+		Button bt1 = new Button(rb.getString("main_createBtn"));
+		Button bt2 = new Button(rb.getString("main_addBtn"));
+		Button bt3 = new Button(rb.getString("main_settingsBtn"));
 		Label lb1 = new Label("Study Buddy");
-		Label lb2 = new Label("Subject");
-		Label lb3 = new Label("   Description:    ");
+		Label lb2 = new Label(rb.getString("main_subjectLb"));
 		TextArea ta1 = new TextArea();
 		TextArea ta2 = new TextArea();
 		
@@ -47,7 +54,6 @@ public class Principal2 extends Application {
 		grid.add(bt2, 0, 3, 1, 1);
 	
 		GridPane.setHalignment(lb1, HPos.CENTER);
-		GridPane.setHalignment(lb3, HPos.RIGHT);
 		GridPane.setHalignment(bt1, HPos.CENTER);
 		GridPane.setHalignment(lb2, HPos.CENTER);
 		GridPane.setHalignment(bt3, HPos.RIGHT);
