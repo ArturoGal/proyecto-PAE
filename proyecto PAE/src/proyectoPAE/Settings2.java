@@ -13,20 +13,18 @@ public class Settings2 extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		// TODO Auto-generated method stub
 		VBox vBox = new VBox(); 
-		
 		Label lblsett = new Label("Settings");
 		Button btnEdit = new Button("Edit Subjects"); 
 		Button btnFiles = new Button("Edit Files"); 
 		Button btnAbout = new Button("About"); 
 		Button btnHelp = new Button("Help"); 
 		
-		vBox.setMargin(lblsett, new Insets(10,180,10,180));
-		vBox.setMargin(btnEdit, new Insets(5,180,5,180));
-		vBox.setMargin(btnFiles, new Insets(5,180,5,180));
-		vBox.setMargin(btnAbout, new Insets(5,180,5,180));
-		vBox.setMargin(btnHelp, new Insets(5,180,5,180));
+		VBox.setMargin(lblsett, new Insets(10,180,10,180));
+		VBox.setMargin(btnEdit, new Insets(5,180,5,180));
+		VBox.setMargin(btnFiles, new Insets(5,180,5,180));
+		VBox.setMargin(btnAbout, new Insets(5,180,5,180));
+		VBox.setMargin(btnHelp, new Insets(5,180,5,180));
 		
 		lblsett.setAlignment(Pos.CENTER);
 		lblsett.setMaxWidth(114);
