@@ -46,6 +46,7 @@ public class Create2 extends Application{
 		
 		txtTitle.setPrefWidth(600);
 		txtDes.setPrefWidth(600);
+		txtDes.setWrapText(true);
 		cbSub.setPrefWidth(270);			
 		
 		create.setStyle("-fx-font-size: 22;  ");

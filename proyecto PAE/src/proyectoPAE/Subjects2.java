@@ -42,10 +42,9 @@ public class Subjects2 extends Application {
 		
 		lb1.setStyle("-fx-font-size: 24px");
 		
-
-		ObservableList<String> listItems = FXCollections.observableArrayList("Add Items here");
+		ObservableList<String> listSubjects = FXCollections.observableArrayList(new SubjectManager().getSubjectNames());
+		lv.setItems(listSubjects);
 		
-		lv.setItems(listItems);
 		GridPane.setHalignment(lb1, HPos.CENTER);
 		GridPane.setHalignment(bt1, HPos.CENTER);
 		GridPane.setHalignment(bt2, HPos.CENTER);

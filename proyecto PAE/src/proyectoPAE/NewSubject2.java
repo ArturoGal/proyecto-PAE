@@ -1,9 +1,14 @@
 package proyectoPAE;
 
+
+
 import java.util.Locale;
 import java.util.ResourceBundle;
 
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -45,21 +50,31 @@ public class NewSubject2 extends Application {
 		grid.add(ta, 1, 2, 1, 1);
 		grid.add(bt1, 1, 3, 1, 1);
 		
-	
 		GridPane.setHalignment(lb1, HPos.CENTER);
 		GridPane.setHalignment(lb3, HPos.RIGHT);
 		GridPane.setHalignment(bt1, HPos.RIGHT);
 		GridPane.setHalignment(lb2, HPos.CENTER);
 		
-		
 		stage.setScene(scene);
 		stage.show();
 		stage.setTitle("Study Buddy");
-	
+		
+		bt1.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				String name = tf.getText();
+				String description = ta.getText();
+
+				SubjectManager sb = new SubjectManager();
+				sb.addSubject(name, description);
+				Platform.exit();
+			}
+		});
 	}
 	
 	public static void main(String[] args) {
 		launch(args);
+		
 	}
 
 }

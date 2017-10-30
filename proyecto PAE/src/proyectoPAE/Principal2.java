@@ -1,14 +1,18 @@
 package proyectoPAE;
 
+import java.util.ArrayList;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -19,7 +23,7 @@ public class Principal2 extends Application {
 	public void start(Stage stage) throws Exception {
 		System.getProperty("user.language");
 		String resourceLocation = "resources.i18n.messages";
-		Locale locale = new Locale("ES");
+		Locale locale = new Locale("En");
 		rb = ResourceBundle.getBundle(resourceLocation, locale);
 		
 		GridPane grid = new GridPane();
@@ -35,8 +39,20 @@ public class Principal2 extends Application {
 		Button bt3 = new Button(rb.getString("main_settingsBtn"));
 		Label lb1 = new Label("Study Buddy");
 		Label lb2 = new Label(rb.getString("main_subjectLb"));
+		ListView<String> lv1 = new ListView<String>();
+		ListView<String> lv2 = new ListView<String>();
 		TextArea ta1 = new TextArea();
 		TextArea ta2 = new TextArea();
+		lv1.setPrefWidth(270);
+		lv2.setPrefWidth(270);
+		
+		
+		ObservableList<String> listSubjects = FXCollections.observableArrayList(getSubjectNames());
+
+		ObservableList<String> listTools = FXCollections.observableArrayList("Add Tools here");
+		
+		lv1.setItems(listSubjects);
+		lv2.setItems(listTools);
 		
 		lb1.setStyle("-fx-font-size: 30px");
 		lb2.setStyle("-fx-font-size: 20px");
@@ -48,8 +64,8 @@ public class Principal2 extends Application {
 		grid.add(lb1, 0, 0, 2, 1);
 		grid.add(lb2, 0, 1, 1, 1);
 		grid.add(bt1, 1, 1, 1, 1);
-		grid.add(ta1, 0, 2, 1, 1);
-		grid.add(ta2, 1, 2, 1, 1);
+		grid.add(lv1, 0, 2, 1, 1);
+		grid.add(lv2, 1, 2, 1, 1);
 		grid.add(bt3, 1, 3, 1, 1);
 		grid.add(bt2, 0, 3, 1, 1);
 	
@@ -68,4 +84,10 @@ public class Principal2 extends Application {
 	public static void main(String[] args) {
 		launch(args);
 	}
+	
+	public static ArrayList<String> getSubjectNames() {
+		SubjectManager sb = new SubjectManager();
+		return sb.getSubjectNames();
+	}
+	
 }
