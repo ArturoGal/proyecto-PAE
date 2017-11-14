@@ -21,6 +21,7 @@ public class Principal2 extends Application {
 	private ResourceBundle rb;
 	@Override
 	public void start(Stage stage) throws Exception {
+		
 		System.getProperty("user.language");
 		String resourceLocation = "resources.i18n.messages";
 		Locale locale = new Locale("En");
@@ -83,6 +84,7 @@ public class Principal2 extends Application {
 	
 	public static void main(String[] args) {
 		launch(args);
+		System.out.println("Hola");
 	}
 	
 	public static ArrayList<String> getSubjectNames() {
