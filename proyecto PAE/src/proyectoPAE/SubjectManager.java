@@ -6,7 +6,7 @@ import java.io.*;
 
 public class SubjectManager {
 	private ArrayList<Subject> Subjects;
-//Nombre del archivo de Subject
+//Nombre del archivo de Subjects
     private static final String Subject_FILE = "files//Subjects.dat";
 //Entrada y salida de datos
     ObjectOutputStream outputStream = null;
@@ -66,7 +66,7 @@ public class SubjectManager {
             outputStream = new ObjectOutputStream(new FileOutputStream(Subject_FILE));
             outputStream.writeObject(Subjects);
         } catch (FileNotFoundException e) {
-            System.out.println("[Update] Error: " + e.getMessage() + ",the program will try and make a new file");
+            System.out.println("[Update] Error: " + e.getMessage() + ", the program will try and make a new file");
         } catch (IOException e) {
             System.out.println("[Update] Error: " + e.getMessage());
         } finally {
