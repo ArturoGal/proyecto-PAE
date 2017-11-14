@@ -5,35 +5,41 @@ import java.util.*;
 import java.io.*;
 
 public class SubjectManager {
-	private ArrayList<Subject> Subjects;
-//Nombre del archivo de Subjects
+	private ArrayList<Subject> subjects;
+//Nombre del archivo de subjects
     private static final String Subject_FILE = "files//Subjects.dat";
 //Entrada y salida de datos
     ObjectOutputStream outputStream = null;
     ObjectInputStream inputStream = null;
 
     public SubjectManager() {
-        Subjects = new ArrayList<>();
+        subjects = new ArrayList<>();
     }
 //Inicia la carga y el ordenamiento de datos
     public ArrayList<Subject> getSubjects() {
         loadSubjectFile();
-        return Subjects;
+        return subjects;
     }
     
     public ArrayList<String> getSubjectNames() {
         loadSubjectFile();
         ArrayList<String> names = new ArrayList<String>();
-        for(Subject s : Subjects){
+        for(Subject s : subjects){
         	names.add(s.getName());
         }
         return names;
+    }
+    
+    public void deleteSubject(String name){
+    	loadSubjectFile();
+    	subjects.removeIf(s ->  s.getName().equals(name));
+    	updateSubjectFile();
     }
 
 //Agrega un nuevo Subject
     public void addSubject(String name, String description) {
         loadSubjectFile();
-        Subjects.add(new Subject(name, description));
+        subjects.add(new Subject(name, description));
         updateSubjectFile();
     }
 //Carga el archivo 
@@ -41,7 +47,7 @@ public class SubjectManager {
 	public void loadSubjectFile() {
         try {
             inputStream = new ObjectInputStream(new FileInputStream(Subject_FILE));
-            Subjects = (ArrayList<Subject>) inputStream.readObject();
+            subjects = (ArrayList<Subject>) inputStream.readObject();
         } catch (FileNotFoundException e) {
             System.out.println("[ File n f Error: " + e.getMessage());
         } catch (IOException e) {
@@ -64,7 +70,7 @@ public class SubjectManager {
     public void updateSubjectFile() {
         try {
             outputStream = new ObjectOutputStream(new FileOutputStream(Subject_FILE));
-            outputStream.writeObject(Subjects);
+            outputStream.writeObject(subjects);
         } catch (FileNotFoundException e) {
             System.out.println("[Update] Error: " + e.getMessage() + ", the program will try and make a new file");
         } catch (IOException e) {
@@ -80,6 +86,4 @@ public class SubjectManager {
             }
         }
     }
-
-     
 }

@@ -18,7 +18,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-public class Subjects2 extends Application {
+public class Files extends Application{
 	private ResourceBundle rb;
 	public void start(Stage stage) throws Exception {
 		System.getProperty("user.language");
@@ -35,7 +35,7 @@ public class Subjects2 extends Application {
 		Scene scene = new Scene(grid);
 		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		
-		Label lb1 = new Label(rb.getString("main_subjectsLb"));
+		Label lb1 = new Label(rb.getString("main_filesLb"));
 	
 		ListView<String> lv = new ListView<String>();
 		
@@ -43,8 +43,10 @@ public class Subjects2 extends Application {
 		bt2.setPrefWidth(180);
 		lb1.setStyle("-fx-font-size: 24px");
 		
-		ObservableList<String> listSubjects = FXCollections.observableArrayList(new SubjectManager().getSubjectNames());
+		ObservableList<String> listSubjects = FXCollections.observableArrayList(new FlashCardManager().getFlashCardTitles());
+		
 		lv.setItems(listSubjects);
+		
 		
 		GridPane.setHalignment(lb1, HPos.CENTER);
 		GridPane.setHalignment(bt2, HPos.CENTER);

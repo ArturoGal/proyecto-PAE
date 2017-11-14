@@ -13,7 +13,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -24,7 +23,7 @@ public class Principal2 extends Application {
 		
 		System.getProperty("user.language");
 		String resourceLocation = "resources.i18n.messages";
-		Locale locale = new Locale("En");
+		Locale locale = Locale.getDefault();
 		rb = ResourceBundle.getBundle(resourceLocation, locale);
 		
 		GridPane grid = new GridPane();
@@ -34,6 +33,7 @@ public class Principal2 extends Application {
 		grid.setPadding(new Insets(15));
 		Scene scene = new Scene(grid);
 		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+		grid.setGridLinesVisible(true);
 		
 		Button bt1 = new Button(rb.getString("main_createBtn"));
 		Button bt2 = new Button(rb.getString("main_addBtn"));
@@ -42,8 +42,6 @@ public class Principal2 extends Application {
 		Label lb2 = new Label(rb.getString("main_subjectLb"));
 		ListView<String> lv1 = new ListView<String>();
 		ListView<String> lv2 = new ListView<String>();
-		TextArea ta1 = new TextArea();
-		TextArea ta2 = new TextArea();
 		lv1.setPrefWidth(270);
 		lv2.setPrefWidth(270);
 		
@@ -57,8 +55,6 @@ public class Principal2 extends Application {
 		
 		lb1.setStyle("-fx-font-size: 30px");
 		lb2.setStyle("-fx-font-size: 20px");
-		ta1.setPrefSize(200, 300);
-		ta2.setPrefSize(350, 300);
 		bt1.setPrefWidth(150);
 		bt2.setPrefWidth(200);
 		
@@ -84,7 +80,7 @@ public class Principal2 extends Application {
 	
 	public static void main(String[] args) {
 		launch(args);
-		System.out.println("Hola");
+
 	}
 	
 	public static ArrayList<String> getSubjectNames() {
