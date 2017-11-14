@@ -6,7 +6,7 @@ import java.io.Serializable;
 public class Subject  implements Serializable {
   
 	private static final long serialVersionUID = 1L;
-    private final String name, description;
+    private String name, description;
 
     public String getDescription() {
         return description;
