@@ -6,7 +6,7 @@ public class FlashCard implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private String title, info, subjectName;
 
-    public String getDescription() {
+    public String getContent() {
         return info;
     }
 

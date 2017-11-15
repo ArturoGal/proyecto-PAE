@@ -15,7 +15,7 @@ public class FlashCardView extends Application {
 	@Override
 	public void start(Stage arg0) throws Exception {
 		BorderPane border = new BorderPane();
-		border.setCenter(new Label(flash.getDescription()));
+		border.setCenter(new Label(flash.getContent()));
 		
 	}
 	

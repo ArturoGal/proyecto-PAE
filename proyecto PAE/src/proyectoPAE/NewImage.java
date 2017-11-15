@@ -1,16 +1,20 @@
 package proyectoPAE;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -31,9 +35,8 @@ public class NewImage extends Application {
 		GridPane grid = new GridPane();
 		grid.setHgap(15);
 		grid.setPrefSize(475, 300);
-		grid.setVgap(15);
-		grid.setPadding(new Insets(15));
-		grid.setGridLinesVisible(true);
+		grid.setVgap(12);
+		grid.setPadding(new Insets(12));
 		Scene scene = new Scene(grid);
 		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		
@@ -41,13 +44,18 @@ public class NewImage extends Application {
 		Label lb1 = new Label(rb.getString("main_newImageLb"));
 		lb1.setStyle("-fx-font-size: 24px");
 		
-		Label lb2 = new Label(rb.getString("main_nameLb"));
+		Label lb2 = new Label(rb.getString("main_titleLb"));
 		Label lb3 = new Label(rb.getString("main_descriptionLb"));
 		Button chooseFile = new Button(rb.getString("main_browse"));
 		Label lbPath = new Label();
 		TextField tf = new TextField();
 		TextArea ta = new TextArea();
-		ta.setPrefSize(314, 136);
+		ChoiceBox<String> choice = new ChoiceBox<String>();
+		choice.setPrefWidth(315);
+		ObservableList<String> listSubjects = FXCollections.observableArrayList(getSubjectNames());
+		choice.getItems().addAll(listSubjects);
+		choice.getSelectionModel().selectFirst();
+		ta.setPrefSize(314, 50);
 		
 		grid.add(lb1, 0, 0, 2, 1);
 		grid.add(lb2, 0, 1, 1, 1);
@@ -56,7 +64,8 @@ public class NewImage extends Application {
 		grid.add(ta, 1, 2, 1, 1);
 		grid.add(chooseFile, 0, 3, 1, 1);
 		grid.add(lbPath, 1, 3, 2, 1);
-		grid.add(bt1, 1, 4, 1, 1);
+		grid.add(choice, 1, 4, 2, 1);
+		grid.add(bt1, 1, 5, 1, 1);
 		
 		GridPane.setHalignment(lb1, HPos.CENTER);
 		GridPane.setHalignment(lb3, HPos.RIGHT);
@@ -93,6 +102,11 @@ public class NewImage extends Application {
 		});
 		
 	
+	}
+	
+	public static ArrayList<String> getSubjectNames() {
+		SubjectManager sb = new SubjectManager();
+		return sb.getSubjectNames();
 	}
 	
 	public static void main(String[] args) {

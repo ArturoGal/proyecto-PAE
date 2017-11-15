@@ -15,7 +15,7 @@ public class SubjectManager {
     public SubjectManager() {
         subjects = new ArrayList<>();
     }
-//Inicia la carga y el ordenamiento de datos
+
     public ArrayList<Subject> getSubjects() {
         loadSubjectFile();
         return subjects;

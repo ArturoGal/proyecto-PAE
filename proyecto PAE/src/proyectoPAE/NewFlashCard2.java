@@ -45,28 +45,32 @@ public class NewFlashCard2 extends Application {
 		Label lb1 = new Label(rb.getString("main_flashCardLb"));
 		Label lb2 = new Label(rb.getString("main_titleLb"));
 		Label lb3 = new Label("    "+rb.getString("main_contentLb"));
+		Label sub = new Label(rb.getString("main_subjectLb")+":");
 		TextField tf = new TextField();
 		TextArea ta = new TextArea();
 		ChoiceBox<String> choice = new ChoiceBox<String>();
 		choice.setPrefWidth(315);
 		ObservableList<String> listSubjects = FXCollections.observableArrayList(getSubjectNames());
 		choice.getItems().addAll(listSubjects);
+		choice.getSelectionModel().selectFirst();
 		ta.setPrefSize(315, 80);
 		ta.setWrapText(true);
 		lb1.setStyle("-fx-font-size: 24px");
 		GridPane.setHalignment(lb1, HPos.CENTER);
 		GridPane.setHalignment(lb3, HPos.RIGHT);
 		GridPane.setHalignment(bt1, HPos.RIGHT);
-		GridPane.setHalignment(lb2, HPos.CENTER);	
+		GridPane.setHalignment(lb2, HPos.CENTER);
+		GridPane.setHalignment(sub, HPos.CENTER);
 		
 		GridPane.setConstraints(bt1, 1, 4, 1, 1);
 		GridPane.setConstraints(lb1, 0, 0, 2, 1);
 		GridPane.setConstraints(lb2, 0, 1, 1, 1);
 		GridPane.setConstraints(tf, 1, 1, 1, 1);
 		GridPane.setConstraints(lb3, 0, 2, 1, 1);
+		GridPane.setConstraints(sub, 0, 3, 1, 1);
 		GridPane.setConstraints(choice, 1, 3, 2, 1);
 		GridPane.setConstraints(ta, 1, 2, 1, 1);
-		grid.getChildren().addAll(bt1, lb1, lb2, tf, lb3, ta, choice);
+		grid.getChildren().addAll(bt1, lb1, lb2, tf, lb3, ta, choice, sub);
 		
 		bt1.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
