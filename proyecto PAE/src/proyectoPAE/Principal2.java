@@ -35,7 +35,7 @@ public class Principal2 extends Application {
 		grid.setPadding(new Insets(15));
 		//grid.setGridLinesVisible(true);
 		Scene scene = new Scene(grid);
-		grid.setStyle("-fx-background #1d1d1d; ");
+		//grid.setStyle("-fx-background #1d1d1d; ");
 		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 
 		grid.setGridLinesVisible(true);
