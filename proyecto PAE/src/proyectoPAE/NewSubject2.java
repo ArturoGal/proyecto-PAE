@@ -67,7 +67,7 @@ public class NewSubject2 extends Application {
 
 				SubjectManager sb = new SubjectManager();
 				sb.addSubject(name, description);
-				Platform.exit();
+				stage.close();
 			}
 		});
 	}
