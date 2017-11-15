@@ -4,6 +4,8 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -65,6 +67,24 @@ public class Settings2 extends Application {
 		primaryStage.setTitle("Study Buddy"); 
 		primaryStage.setScene(scene);
 		primaryStage.show();
+		
+		btnEdit.setOnAction(new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event) {
+				// TODO Auto-generated method stub
+				Subjects2 sub = new Subjects2();
+				Stage stage = new Stage();
+				try {
+					sub.start(stage);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			//	Scene subScene = new Scene(sub.start(stage), 200, 100);
+				
+			}	
+		});
+		
 		}
 		public static void main(String[] args) {
 			launch(args);
