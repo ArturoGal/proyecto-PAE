@@ -38,10 +38,10 @@ public class Create2 extends Application{
 		TextField txtTitle = new TextField(); 
 		TextArea txtDes= new TextArea(); 
 		ChoiceBox<String> cbSub = new ChoiceBox<>(); 
-		CheckBox cb1 = new CheckBox(rb.getString("main_mindMapCb"));
+		//CheckBox cb1 = new CheckBox(rb.getString("main_mindMapCb"));
 		CheckBox cb2 = new CheckBox(rb.getString("main_flashCardCb"));
 		CheckBox cb3 = new CheckBox(rb.getString("main_chartCb"));
-		CheckBox cb4 = new CheckBox(rb.getString("main_tableCb"));
+	//	CheckBox cb4 = new CheckBox(rb.getString("main_tableCb"));
 		Button ok = new Button("OK"); 
 		
 		txtTitle.setPrefWidth(600);
@@ -51,7 +51,7 @@ public class Create2 extends Application{
 		
 		create.setStyle("-fx-font-size: 22;  ");
 		GridPane.setHalignment(create, HPos.CENTER);
-		GridPane.setValignment(cb4, VPos.TOP);
+		//GridPane.setValignment(cb4, VPos.TOP);
 		
 		//Espaciado entre columnas y filas 
 		gp.setVgap(15); 
@@ -63,14 +63,14 @@ public class Create2 extends Application{
 	    gp.add(lblDes, 0, 2);
 	    gp.add(lblSub, 0, 3);
 	    gp.add(lblTool, 0, 4);
-	    gp.add(ok, 2, 7); 
+	    gp.add(ok, 2, 6); 
 	    gp.add(txtTitle, 1, 1, 2, 1);
 	    gp.add(txtDes, 1, 2, 2, 1);
 	    gp.add(cbSub, 1, 3);
-	    gp.add(cb1, 1, 4);
-	    gp.add(cb2, 1, 5);
-	    gp.add(cb3, 1, 6); 
-	    gp.add(cb4, 1, 7);
+	    gp.add(cb2, 1, 4);
+	    gp.add(cb3, 1, 5);
+	   // gp.add(cb3, 1, 6); 
+	    //gp.add(cb4, 1, 7);
 	    
 	    //Se agrega el GridPane al Scence
 	    Scene scene = new Scene (gp); 

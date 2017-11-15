@@ -1,12 +1,8 @@
 package proyectoPAE;
 
-
-
 import java.util.Locale;
 import java.util.ResourceBundle;
-
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;

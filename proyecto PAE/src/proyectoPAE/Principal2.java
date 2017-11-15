@@ -37,14 +37,15 @@ public class Principal2 extends Application {
 		grid.setPadding(new Insets(15));
 		//grid.setGridLinesVisible(true);
 		Scene scene = new Scene(grid);
-		
+		//grid.setStyle("-fx-background #1d1d1d; ");
 		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-		grid.setGridLinesVisible(true);
+		//grid.setGridLinesVisible(true);
 		
 		Button bt1 = new Button(rb.getString("main_createBtn"));
 		Button bt2 = new Button(rb.getString("main_addBtn"));
 		Button bt3 = new Button(rb.getString("main_settingsBtn"));
-		Button bt4 = new Button(rb.getString("main_viewBtn")); 
+		Button bt4 = new Button(rb.getString("main_viewBtn"));
+		Button bt5 = new Button(rb.getString("main_viewBtn"));
 		Label lb1 = new Label("Study Buddy");
 		Label lb2 = new Label(rb.getString("main_subjectLb"));
 		ListView<String> lv1 = new ListView<String>();
@@ -62,18 +63,20 @@ public class Principal2 extends Application {
 		
 		lb1.setStyle("-fx-font-size: 30px");
 		lb2.setStyle("-fx-font-size: 20px");
-		bt1.setPrefWidth(150);
-		bt4.setPrefWidth(150);
-		bt2.setPrefWidth(200);
+		bt1.setPrefWidth(130);
+		bt4.setPrefWidth(130);
+		bt2.setPrefWidth(130);
+		bt5.setPrefWidth(130);
 		
-		grid.add(lb1, 0, 0, 3, 1);
-		grid.add(lb2, 0, 1, 1, 1);
-		grid.add(bt1, 1, 1, 1, 1);
-		grid.add(bt4, 2, 1, 1, 1);
-		grid.add(lv1, 0, 2, 1, 1);
-		grid.add(lv2, 1, 2, 2, 1);
-		grid.add(bt3, 2, 3, 1, 1);
+		grid.add(lb1, 0, 0, 4, 1);
+		grid.add(lb2, 0, 1, 2, 1);
+		grid.add(bt1, 2, 1, 1, 1);
+		grid.add(bt4, 3, 1, 1, 1);
+		grid.add(lv1, 0, 2, 2, 1);
+		grid.add(lv2, 2, 2, 2, 1);
+		grid.add(bt3, 3, 3, 1, 1);
 		grid.add(bt2, 0, 3, 1, 1);
+		grid.add(bt5, 1, 3, 1, 1);
 	
 		GridPane.setHalignment(lb1, HPos.CENTER);
 		GridPane.setHalignment(bt1, HPos.CENTER);
@@ -81,6 +84,7 @@ public class Principal2 extends Application {
 		GridPane.setHalignment(bt3, HPos.RIGHT);
 		GridPane.setHalignment(bt2, HPos.CENTER);
 		GridPane.setHalignment(bt4, HPos.CENTER);
+		GridPane.setHalignment(bt5, HPos.CENTER);
 		stage.setScene(scene);
 		stage.show();
 		stage.setTitle("Study Buddy");
