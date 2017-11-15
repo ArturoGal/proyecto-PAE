@@ -8,11 +8,9 @@ import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -39,7 +37,7 @@ public class Principal2 extends Application {
 		Scene scene = new Scene(grid);
 		
 		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-		grid.setGridLinesVisible(true);
+	
 		
 		Button bt1 = new Button(rb.getString("main_createBtn"));
 		Button bt2 = new Button(rb.getString("main_addBtn"));
@@ -54,9 +52,7 @@ public class Principal2 extends Application {
 		
 		
 		ObservableList<String> listSubjects = FXCollections.observableArrayList(getSubjectNames());
-
-		ObservableList<String> listTools = FXCollections.observableArrayList("Add Tools here");
-		
+		ObservableList<String> listTools = FXCollections.observableArrayList(getFileNames());
 		lv1.setItems(listSubjects);
 		lv2.setItems(listTools);
 		
@@ -108,6 +104,7 @@ public class Principal2 extends Application {
 				Stage stage = new Stage();
 				try {
 					sub.start(stage);
+					
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -128,21 +125,26 @@ public class Principal2 extends Application {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			//	Scene subScene = new Scene(sub.start(stage), 200, 100);
-				
+			
 			}	
 		});
 		
 		
 	}
 	
-	public static void main(String[] args) {
-		launch(args);
-	}
-	
 	public static ArrayList<String> getSubjectNames() {
 		SubjectManager sb = new SubjectManager();
 		return sb.getSubjectNames();
 	}
+	
+	public static ArrayList<String> getFileNames() {
+		FlashCardManager fcm = new FlashCardManager();
+		return fcm.getFlashCardTitles();
+	}
+	public static void main(String[] args) {
+		launch(args);
+	}
+	
+	
 	
 }

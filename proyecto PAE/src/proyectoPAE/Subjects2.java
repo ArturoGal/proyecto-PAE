@@ -61,7 +61,6 @@ public class Subjects2 extends Application {
 				sb.deleteSubject(lv.getSelectionModel().getSelectedItem());
 				ObservableList<String> listSubjects = FXCollections.observableArrayList(new SubjectManager().getSubjectNames());
 				lv.setItems(listSubjects);
-				
 			}
 		});
 		

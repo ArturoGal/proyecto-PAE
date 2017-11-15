@@ -38,9 +38,10 @@ public class FlashCardManager {
 
 
 //Agrega un nuevo FlashCard
-    public void addFlashCard(String title, String info, Subject subject) {
+    public void addFlashCard(String title, String info, String subject) {
         loadFlashCardFile();
         flashcards.add(new FlashCard(title, info, subject));
+        
         updateFlashCardFile();
     }
 //Carga el archivo 

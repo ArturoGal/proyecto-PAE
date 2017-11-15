@@ -4,8 +4,7 @@ import java.io.Serializable;
 
 public class FlashCard implements Serializable{
 	private static final long serialVersionUID = 1L;
-	private String title, info;
-    private Subject subject;
+	private String title, info, subjectName;
 
     public String getDescription() {
         return info;
@@ -15,13 +14,13 @@ public class FlashCard implements Serializable{
         return title;
     }
     
-    public Subject getSubject() {
-    	return subject;
+    public String getSubject() {
+    	return subjectName;
     }
 
-    public FlashCard(String title, String info, Subject subject) {
+    public FlashCard(String title, String info, String subject) {
         this.info = info;
         this.title = title;
-        this.subject = subject;
+        this.subjectName = subject;
     }
 }
