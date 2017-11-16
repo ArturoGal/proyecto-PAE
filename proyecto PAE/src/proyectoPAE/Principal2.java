@@ -24,6 +24,7 @@ import javafx.stage.Stage;
 
 public class Principal2 extends Application {
 	private ResourceBundle rb;
+	
 	@Override
 	public void start(Stage stage) throws Exception {
 		System.getProperty("user.language");
@@ -79,7 +80,7 @@ public class Principal2 extends Application {
 		
 		lb1.setStyle("-fx-font-size: 30px");
 		lb2.setStyle("-fx-font-size: 20px");
-		lb3.setStyle("-fx-font-size: 13Bpx");
+		lb3.setStyle("-fx-font-size: 13px");
 		bt1.setPrefWidth(130);
 		bt4.setPrefWidth(130);
 		bt2.setPrefWidth(130);
@@ -171,7 +172,22 @@ public class Principal2 extends Application {
 				}
 			}	
 		});
-
+		bt4.setOnAction(new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event) {
+				// TODO Auto-generated method stub
+			//	ArrayList<FlashCard> flash = get
+				ArrayList<String> titles = getFlashCardTitles();
+				//titles.removeIf(i-> i.ge)
+				Stage stage3 = new Stage();
+				try {
+					//sett.start(stage3);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}	
+		});
 	}
 	
 	public static ArrayList<Subject> getSubjects() {
