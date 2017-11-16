@@ -10,7 +10,7 @@ public class Image implements Serializable{
         return desc;
     }
 
-    public String getName() {
+    public String getTitle() {
         return title;
     }
     

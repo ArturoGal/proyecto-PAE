@@ -29,14 +29,14 @@ public class ImageManager {
 	        loadImageFile();
 	        ArrayList<String> names = new ArrayList<String>();
 	        for(Image s : images){
-	        	names.add(s.getName());
+	        	names.add(s.getTitle());
 	        }
 	        return names;
 	    }
 	    
 	    public void deleteImage(String name){
 	    	loadImageFile();
-	    	images.removeIf(s ->  s.getName().equals(name));
+	    	images.removeIf(i ->  i.getTitle().equals(name));
 	    	updateImageFile();
 	    }
 

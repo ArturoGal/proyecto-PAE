@@ -10,7 +10,7 @@ public class FlashCard implements Serializable{
         return info;
     }
 
-    public String getName() {
+    public String getTitle() {
         return title;
     }
     

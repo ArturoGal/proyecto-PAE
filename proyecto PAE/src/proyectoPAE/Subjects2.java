@@ -1,5 +1,6 @@
 package proyectoPAE;
 
+import java.awt.im.InputContext;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import javafx.application.Application;
@@ -22,7 +23,8 @@ public class Subjects2 extends Application {
 	public void start(Stage stage) throws Exception {
 		System.getProperty("user.language");
 		String resourceLocation = "resources.i18n.messages";
-		Locale locale = new Locale("EN");
+		InputContext context = InputContext.getInstance();  
+		Locale locale = context.getLocale();
 		rb = ResourceBundle.getBundle(resourceLocation, locale);
 		
 		GridPane grid = new GridPane();
@@ -66,6 +68,7 @@ public class Subjects2 extends Application {
 		stage.setScene(scene);
 		stage.show();
 		stage.setTitle("Study Buddy");
+		stage.setResizable(false);
 		
 	}	
 	

@@ -1,6 +1,7 @@
 package proyectoPAE;
 
 
+import java.awt.im.InputContext;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -28,7 +29,8 @@ public class NewFlashCard2 extends Application {
 	public void start(Stage stage) throws Exception {
 		System.getProperty("user.language");
 		String resourceLocation = "resources.i18n.messages";
-		Locale locale = new Locale("En");
+		InputContext context = InputContext.getInstance();  
+		Locale locale = context.getLocale();
 		rb = ResourceBundle.getBundle(resourceLocation, locale);
 		
 
@@ -76,7 +78,7 @@ public class NewFlashCard2 extends Application {
 			@Override
 			public void handle(ActionEvent event) {
 				FlashCardManager fcm = new FlashCardManager();
-				fcm.addFlashCard(tf.getText(), ta.getText(), choice.getSelectionModel().toString());
+				fcm.addFlashCard(tf.getText(), ta.getText(), choice.getSelectionModel().getSelectedItem());
 				stage.close();
 			}
 		});
@@ -84,6 +86,7 @@ public class NewFlashCard2 extends Application {
 		stage.setScene(scene);
 		stage.show();
 		stage.setTitle("Study Buddy");
+		stage.setResizable(false);
 			
 	}
 	
