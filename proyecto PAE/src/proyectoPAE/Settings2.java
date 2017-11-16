@@ -1,5 +1,6 @@
 package proyectoPAE;
 
+import java.awt.im.InputContext;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -21,7 +22,8 @@ public class Settings2 extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		System.getProperty("user.language");
 		String resourceLocation = "resources.i18n.messages";
-		Locale locale = new Locale("EN");
+		InputContext context = InputContext.getInstance();  
+		Locale locale = context.getLocale();
 		rb = ResourceBundle.getBundle(resourceLocation, locale);
 		
 		VBox vBox = new VBox(); 
@@ -38,25 +40,20 @@ public class Settings2 extends Application {
 		VBox.setMargin(btnHelp, new Insets(5,180,5,180));
 		
 		lblsett.setAlignment(Pos.CENTER);
-		lblsett.setMaxWidth(114);
-		lblsett.setMaxHeight(34);
+		lblsett.setPrefSize(130, 50);
 		lblsett.setStyle("-fx-font-size: 24;");
 		
 		btnEdit.setAlignment(Pos.CENTER);
-		btnEdit.setMinWidth(115);
-		btnEdit.setMinHeight(50);
+		btnEdit.setPrefSize(130, 50);
 		
 		btnFiles.setAlignment(Pos.CENTER);
-		btnFiles.setMinWidth(115);
-		btnFiles.setMinHeight(50);
+		btnFiles.setPrefSize(130, 50);
 		
 		btnAbout.setAlignment(Pos.CENTER);
-		btnAbout.setMinWidth(115);
-		btnAbout.setMinHeight(50);
+		btnAbout.setPrefSize(130, 50);
 		
 		btnHelp.setAlignment(Pos.CENTER);
-		btnHelp.setMinWidth(115);
-		btnHelp.setMinHeight(50);
+		btnHelp.setPrefSize(130, 50);
 		
 		vBox.getChildren().addAll(lblsett, btnEdit, btnFiles, btnAbout, btnHelp ); 
 		
@@ -67,6 +64,22 @@ public class Settings2 extends Application {
 		primaryStage.setTitle("Study Buddy"); 
 		primaryStage.setScene(scene);
 		primaryStage.show();
+		primaryStage.setResizable(false);
+		
+		btnFiles.setOnAction(new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event) {
+				Files sub = new Files();
+				Stage stage = new Stage();
+				try {
+					sub.start(stage);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+
+				
+			}	
+		});
 		
 		btnEdit.setOnAction(new EventHandler<ActionEvent>(){
 			@Override

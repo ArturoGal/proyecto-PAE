@@ -1,5 +1,6 @@
 package proyectoPAE;
 
+import java.awt.im.InputContext;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Locale;
@@ -29,7 +30,8 @@ public class NewImage extends Application {
 	public void start(Stage stage) throws Exception {
 		System.getProperty("user.language");
 		String resourceLocation = "resources.i18n.messages";
-		Locale locale = new Locale("EN");
+		InputContext context = InputContext.getInstance();  
+		Locale locale = context.getLocale();
 		rb = ResourceBundle.getBundle(resourceLocation, locale);
 		
 		GridPane grid = new GridPane();
@@ -72,17 +74,16 @@ public class NewImage extends Application {
 		GridPane.setHalignment(bt1, HPos.RIGHT);
 		GridPane.setHalignment(lb2, HPos.CENTER);
 
-		
 		stage.setScene(scene);
 		stage.show();
 		stage.setTitle("Study Buddy");
+		stage.setResizable(false);
 		
 		bt1.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
 				ImageManager im = new ImageManager();
 				im.addImage(tf.getText(), ta.getText(), choice.getSelectionModel().getSelectedItem(), lbPath.getText());
-				stage.close();
 				stage.close();
 			}
 		});
@@ -91,12 +92,10 @@ public class NewImage extends Application {
 			@Override
 			public void handle(ActionEvent event) {
 				FileChooser fileChooser = new FileChooser();
-	             
 	            //Set extension filter
 	            FileChooser.ExtensionFilter extFilterJPG = new FileChooser.ExtensionFilter("JPG files (*.jpg)", "*.JPG");
 	            FileChooser.ExtensionFilter extFilterPNG = new FileChooser.ExtensionFilter("PNG files (*.png)", "*.PNG");
 	            fileChooser.getExtensionFilters().addAll(extFilterJPG, extFilterPNG);
-	              
 	            //Show open file dialog
 	            File file = fileChooser.showOpenDialog(null);
 	            lbPath.setText(file.getAbsolutePath());

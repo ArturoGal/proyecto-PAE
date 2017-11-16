@@ -1,5 +1,6 @@
 package proyectoPAE;
 
+import java.awt.im.InputContext;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -23,7 +24,8 @@ public class Files extends Application{
 	public void start(Stage stage) throws Exception {
 		System.getProperty("user.language");
 		String resourceLocation = "resources.i18n.messages";
-		Locale locale = new Locale("EN");
+		InputContext context = InputContext.getInstance();  
+		Locale locale = context.getLocale();
 		rb = ResourceBundle.getBundle(resourceLocation, locale);
 		
 		GridPane grid = new GridPane();
@@ -43,11 +45,10 @@ public class Files extends Application{
 		bt2.setPrefWidth(180);
 		lb1.setStyle("-fx-font-size: 24px");
 		
-		ObservableList<String> listSubjects = FXCollections.observableArrayList(new FlashCardManager().getFlashCardTitles());
-		
-		lv.setItems(listSubjects);
-		
-		
+		ObservableList<String> listFlashCards = FXCollections.observableArrayList(new FlashCardManager().getFlashCardTitles());
+		lv.setItems(listFlashCards);
+		ObservableList<String> listImages = FXCollections.observableArrayList(new ImageManager().getImageTitles());
+		lv.getItems().addAll(listImages);
 		GridPane.setHalignment(lb1, HPos.CENTER);
 		GridPane.setHalignment(bt2, HPos.CENTER);
 		GridPane.setValignment(bt2, VPos.CENTER);
@@ -59,10 +60,15 @@ public class Files extends Application{
 		bt2.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				SubjectManager sb = new SubjectManager();
-				sb.deleteSubject(lv.getSelectionModel().getSelectedItem());
-				ObservableList<String> listSubjects = FXCollections.observableArrayList(new SubjectManager().getSubjectNames());
-				lv.setItems(listSubjects);
+				ImageManager im = new ImageManager();
+				im.deleteImage(lv.getSelectionModel().getSelectedItem());
+				ObservableList<String> listImages = FXCollections.observableArrayList(new ImageManager().getImageTitles());
+				FlashCardManager fcm = new FlashCardManager();
+				fcm.deleteFlashCard(lv.getSelectionModel().getSelectedItem());
+				ObservableList<String> listFlashCards = FXCollections.observableArrayList(new FlashCardManager().getFlashCardTitles());
+				ObservableList<String> listFiles = listImages;
+				listFiles.addAll(listFlashCards);
+				lv.setItems(listFiles);
 				
 			}
 		});
@@ -70,6 +76,7 @@ public class Files extends Application{
 		stage.setScene(scene);
 		stage.show();
 		stage.setTitle("Study Buddy");
+		stage.setResizable(false);
 		
 	}	
 	
