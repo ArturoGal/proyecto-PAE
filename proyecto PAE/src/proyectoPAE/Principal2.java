@@ -3,6 +3,9 @@ package proyectoPAE;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -22,7 +25,6 @@ public class Principal2 extends Application {
 	private ResourceBundle rb;
 	@Override
 	public void start(Stage stage) throws Exception {
-		
 		System.getProperty("user.language");
 		String resourceLocation = "resources.i18n.messages";
 		Locale locale = Locale.getDefault();
@@ -54,10 +56,20 @@ public class Principal2 extends Application {
 		lv2.setPrefWidth(270);
 		
 		
-		ObservableList<String> listSubjects = FXCollections.observableArrayList(getSubjectNames());
-		ObservableList<String> listTools = FXCollections.observableArrayList(getFileNames());
-		lv1.setItems(listSubjects);
-		lv2.setItems(listTools);
+		ScheduledExecutorService exec = Executors.newScheduledThreadPool(1);
+		exec.scheduleAtFixedRate(new Runnable() {
+			  @Override
+			  public void run(){
+				ObservableList<String> listSubjects = FXCollections.observableArrayList(getSubjectNames());
+				ObservableList<String> listFlashCards = FXCollections.observableArrayList(getFlashCardTitles());
+				ObservableList<String> listImages = FXCollections.observableArrayList(getImageTitles());
+				
+				lv1.setItems(listSubjects);
+				lv2.setItems(listImages);
+				
+			  }
+			}, 0, 1, TimeUnit.SECONDS);
+	
 		
 		lb1.setStyle("-fx-font-size: 30px");
 		lb2.setStyle("-fx-font-size: 20px");
@@ -109,8 +121,7 @@ public class Principal2 extends Application {
 				NewSubject2 sub = new NewSubject2();
 				Stage stage = new Stage();
 				try {
-					sub.start(stage);
-					
+					sub.start(stage);					
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -134,8 +145,21 @@ public class Principal2 extends Application {
 			
 			}	
 		});
-		
-		
+	}
+	
+	public static ArrayList<Subject> getSubjects() {
+		SubjectManager sb = new SubjectManager();
+		return sb.getSubjects();
+	}
+	
+	public static ArrayList<Image> getImages() {
+		ImageManager im = new ImageManager();
+		return im.getImages();
+	}
+	
+	public static ArrayList<FlashCard> getFlashCards() {
+		FlashCardManager fcm = new FlashCardManager();
+		return fcm.getFlashCards();
 	}
 	
 	public static ArrayList<String> getSubjectNames() {
@@ -143,10 +167,16 @@ public class Principal2 extends Application {
 		return sb.getSubjectNames();
 	}
 	
-	public static ArrayList<String> getFileNames() {
-		FlashCardManager fcm = new FlashCardManager();
-		return fcm.getFlashCardTitles();
+	public static ArrayList<String> getFlashCardTitles() {
+		FlashCardManager fm = new FlashCardManager();
+		return fm.getFlashCardTitles();
 	}
+	
+	public static ArrayList<String> getImageTitles() {
+		ImageManager im = new ImageManager();
+		return im.getImageTitles();
+	}
+	
 	public static void main(String[] args) {
 		launch(args);
 	}
