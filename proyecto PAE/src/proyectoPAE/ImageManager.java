@@ -25,7 +25,7 @@ public class ImageManager {
 	        return images;
 	    }
 	    
-	    public ArrayList<String> getImageNames() {
+	    public ArrayList<String> getImageTitles() {
 	        loadImageFile();
 	        ArrayList<String> names = new ArrayList<String>();
 	        for(Image s : images){

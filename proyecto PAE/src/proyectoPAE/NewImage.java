@@ -80,7 +80,9 @@ public class NewImage extends Application {
 		bt1.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				
+				ImageManager im = new ImageManager();
+				im.addImage(tf.getText(), ta.getText(), choice.getSelectionModel().getSelectedItem(), lbPath.getText());
+				stage.close();
 				stage.close();
 			}
 		});
