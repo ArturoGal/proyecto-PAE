@@ -54,7 +54,7 @@ public class Subjects2 extends Application {
 		grid.add(lb1, 0, 0, 2, 1);
 		grid.add(lv, 0, 1, 1, 1);
 		grid.add(bt2, 1, 1, 1, 1);
-		
+		//Acción del botón para eliminar materia
 		bt2.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {

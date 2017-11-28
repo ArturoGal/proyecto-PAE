@@ -2,9 +2,10 @@ package proyectoPAE;
 
 import java.io.Serializable;
 
-public class Image implements Serializable{
+
+public class OurImage implements Serializable{
 	private static final long serialVersionUID = 1L;
-	private String title, desc, subjectName, path;
+	private String title, desc, subjectName, url;
 
     public String getDescription() {
         return desc;
@@ -18,16 +19,15 @@ public class Image implements Serializable{
     	return subjectName;
     }
     
-    public String getPath(){
-    	return path;
+    public String getURL(){
+    	return url;
     }
     
-    
-    public Image(String title, String desc, String subject, String path) {
+    public OurImage(String title, String desc, String subject, String url) {
         this.desc = desc;
         this.title = title;
         this.subjectName = subject;
-        this.path = path;
+        this.url = url;
     }
 }
 

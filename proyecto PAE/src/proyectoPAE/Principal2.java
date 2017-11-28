@@ -7,7 +7,6 @@ import java.util.ResourceBundle;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -27,7 +26,6 @@ import javafx.stage.Stage;
 public class Principal2 extends Application {
 
 	private ResourceBundle rb;
-
 	@Override
 	public void start(Stage stage) throws Exception {
 		Platform.setImplicitExit(true);
@@ -49,15 +47,18 @@ public class Principal2 extends Application {
 		grid.setPadding(new Insets(15));
 	
 		Scene scene = new Scene(grid);
-
-		scene.getStylesheets().add(getClass().getResource("app.css").toExternalForm());
-
+		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+		//Botón para crear herramienta
 		Button bt1 = new Button(rb.getString("main_createBtn"));
+		//Botón para añadir materia
 		Button bt2 = new Button(rb.getString("main_addBtn"));
-	
+		//Boton para settings
 		Button bt3 = new Button("?");
+		//Botón para ver materias
 		Button bt4 = new Button(rb.getString("main_viewBtn"));
+		//Botón para ver herramientas
 		Button bt5 = new Button(rb.getString("main_viewBtn"));
+	
 		Label lb1 = new Label("Study Buddy");
 		Label lb2 = new Label(rb.getString("main_subjectLb"));
 		Label lb3 = new Label(rb.getString("main_toolLb"));
@@ -76,7 +77,7 @@ public class Principal2 extends Application {
 			@Override
 			public void run() {
 				Platform.runLater(() -> {
-					ArrayList<Image> images = getImages();
+					ArrayList<OurImage> images = getImages();
 					images.removeIf((i ->  !(i.getSubject().equals(lv1.getSelectionModel().getSelectedItem()))));
 					ArrayList<FlashCard> flashcards = getFlashCards();
 					flashcards.removeIf((fc ->  !(fc.getSubject().equals(lv1.getSelectionModel().getSelectedItem()))));
@@ -90,7 +91,6 @@ public class Principal2 extends Application {
 					} else {
 						lv2.setItems(listImages);
 					}
-					
 				});
 
 			}
@@ -98,8 +98,7 @@ public class Principal2 extends Application {
 
 		lb1.setStyle("-fx-font-size: 30px");
 		lb2.setStyle("-fx-font-size: 20px");
-		lb3.setStyle("-fx-font-size: 13px");
-		lb3.setStyle("-fx-font-size: 16px");
+		lb3.setStyle("-fx-font-size: 15px");
 		bt1.setPrefWidth(130);
 		bt4.setPrefWidth(130);
 		bt2.setPrefWidth(130);
@@ -132,6 +131,7 @@ public class Principal2 extends Application {
 		stage.setTitle("Study Buddy");
 		stage.setResizable(false);
 
+		//Acción del boton abrir ventana de newFlashcard o newImage
 		bt1.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
@@ -141,76 +141,116 @@ public class Principal2 extends Application {
 					try {
 						create.start(stage2);
 					} catch (Exception e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				} else {
-
 					NewImage create = new NewImage();
 					Stage stage2 = new Stage();
 					try {
 						create.start(stage2);
 					} catch (Exception e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}
 			}
 		});
-
+		//Acción del botón para abrir ventana de materia nueva
 		bt2.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				// TODO Auto-generated method stub
 				NewSubject2 sub = new NewSubject2();
 				Stage stage = new Stage();
 				try {
 					sub.start(stage);
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 
 			}
 		});
+		//Acción del botón para abrir la ventana de settings
 		bt3.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				// TODO Auto-generated method stub
 				Settings2 sett = new Settings2();
 				Stage stage3 = new Stage();
 				try {
 					sett.start(stage3);
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
 		});
+		//Acción del botón para ver materia
 		bt4.setOnAction(new EventHandler<ActionEvent>(){
 			@Override
 			public void handle(ActionEvent event) {
-				// TODO Auto-generated method stub
-			//	ArrayList<FlashCard> flash = get
-				//ArrayList<String> titles = getFlashCardTitles();
-				//titles.removeIf(i-> i.ge)
-				Stage stage3 = new Stage();
-				try {
-					//sett.start(stage3);
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+				if (cb.getSelectionModel().getSelectedItem().startsWith(rb.getString("main_flashCardCb"))) {
+					ArrayList<FlashCard> flashCards = getFlashCards();
+					FlashCard flashCard = null;
+					for(FlashCard fc : flashCards){
+						if(fc.getTitle().equals(lv2.getSelectionModel().getSelectedItem())){
+							flashCard = fc;
+							break;
+						}
+					}
+					FlashCardView fcv = new FlashCardView(flashCard);
+					Stage stage4 = new Stage();
+					try {
+						fcv.start(stage4);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}else{
+					ArrayList<OurImage> images = getImages();
+					OurImage image = null;
+					for(OurImage i : images){
+						if(i.getTitle().equals(lv2.getSelectionModel().getSelectedItem())){
+							image = i;
+							break;
+						}
+					}
+					OurImageView iv = new OurImageView(image);
+					Stage stage5 = new Stage();
+					try {
+						iv.start(stage5);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					
 				}
+
 			}	
 		});
-}
-
+		//Acción del botón para ver herramienta
+		bt5.setOnAction(new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event) {
+				ArrayList<Subject> subjects = getSubjects();
+				Subject subject = null;
+				for(Subject s : subjects){
+					if(s.getName().equals(lv1.getSelectionModel().getSelectedItem())){
+						subject = s;
+						break;
+					}
+				}
+				SubjectView sv = new SubjectView(subject);
+				Stage stage6 = new Stage();
+				try {
+					sv.start(stage6);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	
 	public static ArrayList<Subject> getSubjects() {
 		SubjectManager sb = new SubjectManager();
 		return sb.getSubjects();
 	}
 
-	public static ArrayList<Image> getImages() {
+	public static ArrayList<OurImage> getImages() {
 		ImageManager im = new ImageManager();
 		return im.getImages();
 	}
@@ -228,14 +268,14 @@ public class Principal2 extends Application {
 	public static ArrayList<String> getFlashCardTitles(ArrayList<FlashCard> flashcards) {
 		ArrayList<String> names = new ArrayList<String>();
         for(FlashCard fc : flashcards){
-        //	names.add(fc.getTitle());
+        	names.add(fc.getTitle());
         }
         return names;
 	}
 
-	public static ArrayList<String> getImageTitles(ArrayList<Image> images) {
+	public static ArrayList<String> getImageTitles(ArrayList<OurImage> images) {
         ArrayList<String> names = new ArrayList<String>();
-        for(Image i : images){
+        for(OurImage i : images){
         	names.add(i.getTitle());
         }
         return names;

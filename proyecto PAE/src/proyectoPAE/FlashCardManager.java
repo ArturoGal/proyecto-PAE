@@ -25,14 +25,14 @@ public class FlashCardManager {
         loadFlashCardFile();
         ArrayList<String> titles = new ArrayList<String>();
         for(FlashCard s : flashcards){
-        //	titles.add(s.getTitle());
+        	titles.add(s.getTitle());
         }
         return titles;
     }
     
     public void deleteFlashCard(String title){
     	loadFlashCardFile();
-    	//flashcards.removeIf(fc ->  fc.getTitle().equals(title));
+    	flashcards.removeIf(fc ->  fc.getTitle().equals(title));
     	updateFlashCardFile();
     }
 

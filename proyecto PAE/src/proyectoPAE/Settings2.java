@@ -65,7 +65,7 @@ public class Settings2 extends Application {
 		primaryStage.setScene(scene);
 		primaryStage.show();
 		primaryStage.setResizable(false);
-		
+		//Acción del boton para abrir la ventana para editar archivos
 		btnFiles.setOnAction(new EventHandler<ActionEvent>(){
 			@Override
 			public void handle(ActionEvent event) {
@@ -80,7 +80,22 @@ public class Settings2 extends Application {
 				
 			}	
 		});
-		
+		//Acción del botón para abrir ventana "acerca"
+		btnAbout.setOnAction(new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event) {
+				About sub = new About();
+				Stage stage = new Stage();
+				try {
+					sub.start(stage);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+
+				
+			}	
+		});
+		//Acción del botón para abrir ventana de editar materias
 		btnEdit.setOnAction(new EventHandler<ActionEvent>(){
 			@Override
 			public void handle(ActionEvent event) {

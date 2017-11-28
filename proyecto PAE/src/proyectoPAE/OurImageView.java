@@ -12,16 +12,17 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
-public class FlashCardView extends Application {
-	FlashCard flash;
+public class OurImageView extends Application {
+	private OurImage ourImage;
 	private ResourceBundle rb;
-	public FlashCardView(FlashCard flash){
-		this.flash = flash;
+	public OurImageView(OurImage ourImage){
+		this.ourImage = ourImage;
 	}
 
 	@Override
@@ -36,16 +37,18 @@ public class FlashCardView extends Application {
 		Scene scene = new Scene(grid);
 		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		
+		Image image = new Image(ourImage.getURL());
+		ImageView imgView = new ImageView(image);
+
 		grid.setHgap(15);
-		grid.setPrefSize(475, 300);
+		
 		grid.setVgap(15);
 		grid.setPadding(new Insets(15));
-		grid.getColumnConstraints().add(new ColumnConstraints(460)); 
-		
+	
+		//Botón para ver los detalles de la imagen
 		Button bt1 = new Button(rb.getString("main_see"));
 		Label lb1 = new Label();
-
-		Label textContent = new Label(flash.getContent());
+		Label textContent = new Label();
 		textContent.setWrapText(true);
 		textContent.setStyle("-fx-font-weight: NORMAL");
 		textContent.setTextAlignment(TextAlignment.JUSTIFY);
@@ -53,14 +56,16 @@ public class FlashCardView extends Application {
 		GridPane.setHalignment(lb1, HPos.CENTER);
 		GridPane.setHalignment(bt1, HPos.RIGHT);
 		
-		GridPane.setConstraints(bt1, 0, 2, 1, 1);
+		GridPane.setConstraints(bt1, 0, 3, 1, 1);
 		GridPane.setConstraints(lb1, 0, 0, 1, 1);
-		GridPane.setConstraints(textContent, 0, 1, 1, 1);
-		grid.getChildren().addAll(bt1, lb1, textContent);
-		//Acción del botoón para mostrar el título de la ficha
+		GridPane.setConstraints(imgView, 0, 1, 1, 1);
+		GridPane.setConstraints(textContent, 0, 2, 1, 1);
+		grid.getChildren().addAll(bt1, lb1, textContent, imgView);
+		//Acción para el botón de ver los detalles de la imagen
 		bt1.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
-				lb1.setText(flash.getTitle());
+				lb1.setText(ourImage.getTitle());
+				textContent.setText(ourImage.getDescription());
 			}
 		});
 		

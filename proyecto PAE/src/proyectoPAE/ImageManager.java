@@ -1,5 +1,6 @@
 package proyectoPAE;
 
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -8,8 +9,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
+
 public class ImageManager {
-	private ArrayList<Image> images;
+	private ArrayList<OurImage> images;
 	//Nombre del archivo de images
 	    private static final String Image_FILE = "files//Images.dat";
 	//Entrada y salida de datos
@@ -20,7 +22,7 @@ public class ImageManager {
 	        images = new ArrayList<>();
 	    }
 
-	    public ArrayList<Image> getImages() {
+	    public ArrayList<OurImage> getImages() {
 	        loadImageFile();
 	        return images;
 	    }
@@ -28,22 +30,22 @@ public class ImageManager {
 	    public ArrayList<String> getImageTitles() {
 	        loadImageFile();
 	        ArrayList<String> names = new ArrayList<String>();
-	        for(Image s : images){
-	        	names.add(s.getName());
+	        for(OurImage s : images){
+	        	names.add(s.getTitle());
 	        }
 	        return names;
 	    }
 	    
 	    public void deleteImage(String name){
 	    	loadImageFile();
-	    	images.removeIf(s ->  s.getName().equals(name));
+	    	images.removeIf(s ->  s.getTitle().equals(name));
 	    	updateImageFile();
 	    }
 
 	//Agrega un nuevo Image
-	    public void addImage(String name, String description, String subject, String path) {
+	    public void addImage(String name, String description, String subject, String url){
 	        loadImageFile();
-	        images.add(new Image(name, description, subject, path));
+			images.add(new OurImage(name, description, subject, url));
 	        updateImageFile();
 	    }
 	//Carga el archivo 
@@ -51,7 +53,7 @@ public class ImageManager {
 		public void loadImageFile() {
 	        try {
 	            inputStream = new ObjectInputStream(new FileInputStream(Image_FILE));
-	            images = (ArrayList<Image>) inputStream.readObject();
+	            images = (ArrayList<OurImage>) inputStream.readObject();
 	        } catch (FileNotFoundException e) {
 	            System.out.println("[ File n f Error: " + e.getMessage());
 	        } catch (IOException e) {

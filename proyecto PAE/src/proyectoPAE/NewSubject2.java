@@ -30,8 +30,9 @@ public class NewSubject2 extends Application {
 		grid.setPadding(new Insets(15));
 		Scene scene = new Scene(grid);
 		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-		
+		//Botón para añadir materia
 		Button bt1 = new Button(rb.getString("main_addBtn"));
+
 		Label lb1 = new Label(rb.getString("main_newSubjectLb"));
 		lb1.setStyle("-fx-font-size: 24px");
 		
@@ -39,7 +40,8 @@ public class NewSubject2 extends Application {
 		Label lb3 = new Label(rb.getString("main_descriptionLb"));
 		TextField tf = new TextField();
 		TextArea ta = new TextArea();
-		ta.setPrefSize(314, 136);
+		ta.setPrefSize(320, 136);
+		ta.setWrapText(true);
 		
 		grid.add(lb1, 0, 0, 2, 1);
 		grid.add(lb2, 0, 1, 1, 1);
@@ -57,7 +59,7 @@ public class NewSubject2 extends Application {
 		stage.show();
 		stage.setTitle("Study Buddy");
 		stage.setResizable(false);
-		
+		//Acción del botón para crear una nueva materia
 		bt1.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {

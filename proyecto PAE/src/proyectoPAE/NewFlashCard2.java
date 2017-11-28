@@ -51,11 +51,11 @@ public class NewFlashCard2 extends Application {
 		TextField tf = new TextField();
 		TextArea ta = new TextArea();
 		ChoiceBox<String> choice = new ChoiceBox<String>();
-		choice.setPrefWidth(315);
+		choice.setPrefWidth(320);
 		ObservableList<String> listSubjects = FXCollections.observableArrayList(getSubjectNames());
 		choice.getItems().addAll(listSubjects);
 		choice.getSelectionModel().selectFirst();
-		ta.setPrefSize(315, 80);
+		ta.setPrefSize(320, 80);
 		ta.setWrapText(true);
 		lb1.setStyle("-fx-font-size: 24px");
 		GridPane.setHalignment(lb1, HPos.CENTER);
@@ -73,7 +73,7 @@ public class NewFlashCard2 extends Application {
 		GridPane.setConstraints(choice, 1, 3, 2, 1);
 		GridPane.setConstraints(ta, 1, 2, 1, 1);
 		grid.getChildren().addAll(bt1, lb1, lb2, tf, lb3, ta, choice, sub);
-		
+		//Acción del botón para crear la ficha de estudio
 		bt1.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
@@ -99,5 +99,4 @@ public class NewFlashCard2 extends Application {
 		launch(args);
 	
 	}
-
 }

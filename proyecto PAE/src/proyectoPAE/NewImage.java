@@ -5,7 +5,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.ResourceBundle;
-
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -24,16 +23,17 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 public class NewImage extends Application {
-
 	private ResourceBundle rb;
+	String url;
 	@Override
 	public void start(Stage stage) throws Exception {
+		//
 		System.getProperty("user.language");
 		String resourceLocation = "resources.i18n.messages";
 		InputContext context = InputContext.getInstance();  
 		Locale locale = context.getLocale();
 		rb = ResourceBundle.getBundle(resourceLocation, locale);
-		
+		//Se crea el grid
 		GridPane grid = new GridPane();
 		grid.setHgap(15);
 		grid.setPrefSize(475, 300);
@@ -41,23 +41,26 @@ public class NewImage extends Application {
 		grid.setPadding(new Insets(12));
 		Scene scene = new Scene(grid);
 		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-		
-		Button bt1 = new Button(rb.getString("main_addBtn"));
+		//Botón para crear
+		Button bt1 = new Button(rb.getString("main_createBtn"));
 		Label lb1 = new Label(rb.getString("main_newImageLb"));
 		lb1.setStyle("-fx-font-size: 24px");
-		
+		//Label del titulo
 		Label lb2 = new Label(rb.getString("main_titleLb"));
+		//Label de  descripcion
 		Label lb3 = new Label(rb.getString("main_descriptionLb"));
+		//Botón de browse
 		Button chooseFile = new Button(rb.getString("main_browse"));
 		Label lbPath = new Label();
 		TextField tf = new TextField();
 		TextArea ta = new TextArea();
 		ChoiceBox<String> choice = new ChoiceBox<String>();
-		choice.setPrefWidth(315);
+		choice.setPrefWidth(320);
 		ObservableList<String> listSubjects = FXCollections.observableArrayList(getSubjectNames());
 		choice.getItems().addAll(listSubjects);
 		choice.getSelectionModel().selectFirst();
-		ta.setPrefSize(314, 50);
+		ta.setPrefSize(320, 50);
+		ta.setWrapText(true);
 		
 		grid.add(lb1, 0, 0, 2, 1);
 		grid.add(lb2, 0, 1, 1, 1);
@@ -79,15 +82,16 @@ public class NewImage extends Application {
 		stage.setTitle("Study Buddy");
 		stage.setResizable(false);
 		
+		//Accion del botón para crear
 		bt1.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
 				ImageManager im = new ImageManager();
-				im.addImage(tf.getText(), ta.getText(), choice.getSelectionModel().getSelectedItem(), lbPath.getText());
+				im.addImage(tf.getText(), ta.getText(), choice.getSelectionModel().getSelectedItem(), url);
 				stage.close();
 			}
 		});
-		
+		//Acción para abrir archivos
 		chooseFile.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
@@ -98,13 +102,16 @@ public class NewImage extends Application {
 	            fileChooser.getExtensionFilters().addAll(extFilterJPG, extFilterPNG);
 	            //Show open file dialog
 	            File file = fileChooser.showOpenDialog(null);
+	            
+				url = file.toURI().toString();
+				
 	            lbPath.setText(file.getAbsolutePath());
 			}
 		});
 		
 	
 	}
-	
+	//Obtiene los nombres de las materias en el archivo
 	public static ArrayList<String> getSubjectNames() {
 		SubjectManager sb = new SubjectManager();
 		return sb.getSubjectNames();
